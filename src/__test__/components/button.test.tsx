@@ -21,17 +21,38 @@ describe("initial button properties", () => {
   });
 });
 
-test("click on button", () => {
-  const { getByRole } = render(<App />);
-  const buttonElement = getByRole("button", {
-    name: /change to/i,
+describe("click on button", () => {
+  let buttonElement: HTMLElement;
+  beforeEach(() => {
+    const { getByRole } = render(<App />);
+    buttonElement = getByRole("button", {
+      name: /change to/i,
+    });
+
+    fireEvent.click(buttonElement);
   });
 
-  fireEvent.click(buttonElement);
-  expect(buttonElement).toHaveClass("bg-red-500");
-  expect(buttonElement).toHaveTextContent(/blue/i);
+  describe("when background is blue", () => {
+    test("background should change to red", () => {
+      expect(buttonElement).toHaveClass("bg-red-500");
+    });
 
-  fireEvent.click(buttonElement);
-  expect(buttonElement).toHaveClass("bg-blue-500");
-  expect(buttonElement).toHaveTextContent(/red/i);
+    test("text content should contains 'blue'", () => {
+      expect(buttonElement).toHaveTextContent(/blue/i);
+    });
+  });
+
+  describe("when background is red", () => {
+    beforeEach(() => {
+      fireEvent.click(buttonElement);
+    });
+
+    test("background should change to blue", () => {
+      expect(buttonElement).toHaveClass("bg-blue-500");
+    });
+
+    test("text content should contains 'red'", () => {
+      expect(buttonElement).toHaveTextContent(/red/i);
+    });
+  });
 });

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import App from "../../App";
 
 describe("initial button properties", () => {
@@ -21,4 +21,17 @@ describe("initial button properties", () => {
   });
 });
 
-describe("button is clicked", () => {});
+test("click on button", () => {
+  const { getByRole } = render(<App />);
+  const buttonElement = getByRole("button", {
+    name: /change to/i,
+  });
+
+  fireEvent.click(buttonElement);
+  expect(buttonElement).toHaveClass("bg-red-500");
+  expect(buttonElement).toHaveTextContent(/blue/i);
+
+  fireEvent.click(buttonElement);
+  expect(buttonElement).toHaveClass("bg-blue-500");
+  expect(buttonElement).toHaveTextContent(/red/i);
+});

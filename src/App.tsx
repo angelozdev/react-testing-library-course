@@ -12,9 +12,11 @@ function App() {
   };
 
   return (
-    <div>
-      <Button checked={checked} />
-      <Checkbox handleChange={handleChange} checked={checked} />
+    <div className="p-4">
+      <div className="flex justify-center items-center flex-col">
+        <Button checked={checked} />
+        <Checkbox handleChange={handleChange} checked={checked} />
+      </div>
     </div>
   );
 }

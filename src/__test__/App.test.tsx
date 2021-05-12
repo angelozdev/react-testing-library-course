@@ -102,6 +102,10 @@ describe("checkbox is checked", () => {
     expect(buttonElement).toBeDisabled();
   });
 
+  test("background button should be 'gray'", () => {
+    expect(buttonElement).toHaveClass("bg-gray-500");
+  });
+
   test("button shouldn't call onClick function", () => {});
 });
 

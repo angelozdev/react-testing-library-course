@@ -21,7 +21,9 @@ function Button({ checked }: Props) {
     <button
       disabled={checked}
       onClick={handleClick}
-      className={`text-white p-2 rounded-md bg-${backgroundColor}-500 disabled:opacity-50`}
+      className={`text-white p-2 rounded-md bg-${
+        checked ? "gray" : backgroundColor
+      }-500 disabled:opacity-50`}
     >
       <span className="px-4 inline-block">
         Change to {nextBackgroundgColor}

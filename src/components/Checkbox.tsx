@@ -4,7 +4,12 @@ interface Props {
 }
 
 function Checkbox({ handleChange, checked }: Props) {
-  return <input onChange={handleChange} checked={checked} type="checkbox" />;
+  return (
+    <label className="cursor-pointer">
+      <p>Disable button</p>
+      <input onChange={handleChange} checked={checked} type="checkbox" />
+    </label>
+  );
 }
 
 export default Checkbox;

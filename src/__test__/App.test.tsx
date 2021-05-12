@@ -37,7 +37,7 @@ describe("initial conditions", () => {
     buttonElement = getByRole("button", {
       name: /change to/i,
     });
-    checkboxElement = getByRole("checkbox");
+    checkboxElement = getByRole("checkbox", { name: /disable button/i });
   });
 
   test("button starts enabled", () => {
@@ -93,7 +93,7 @@ describe("checkbox is checked", () => {
   beforeEach(() => {
     const { getByRole } = setup();
     buttonElement = getByRole("button", { name: /change to/i });
-    checkboxElement = getByRole("checkbox");
+    checkboxElement = getByRole("checkbox", { name: /disable button/i });
 
     fireEvent.click(checkboxElement);
   });

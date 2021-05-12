@@ -1,11 +1,17 @@
 import { render, fireEvent } from "@testing-library/react";
-import App from "../../App";
+
+/* Components */
+import App from "../App";
+
+const setup = () => {
+  return render(<App />);
+};
 
 describe("initial button properties", () => {
   let buttonElement: HTMLElement;
 
   beforeEach(() => {
-    const { getByRole } = render(<App />);
+    const { getByRole } = setup();
 
     buttonElement = getByRole("button", {
       name: /change to/i,
@@ -26,7 +32,7 @@ describe("initial conditions", () => {
   let checkboxElement: HTMLElement;
 
   beforeEach(() => {
-    const { getByRole } = render(<App />);
+    const { getByRole } = setup();
 
     buttonElement = getByRole("button", {
       name: /change to/i,
@@ -46,7 +52,7 @@ describe("initial conditions", () => {
 describe("click on button", () => {
   let buttonElement: HTMLElement;
   beforeEach(() => {
-    const { getByRole } = render(<App />);
+    const { getByRole } = setup();
 
     buttonElement = getByRole("button", {
       name: /change to/i,
@@ -77,5 +83,39 @@ describe("click on button", () => {
     test("text content should contains 'red'", () => {
       expect(buttonElement).toHaveTextContent(/red/i);
     });
+  });
+});
+
+describe("checkbox is checked", () => {
+  let buttonElement: HTMLElement;
+  let checkboxElement: HTMLElement;
+
+  beforeEach(() => {
+    const { getByRole } = setup();
+    buttonElement = getByRole("button", { name: /change to/i });
+    checkboxElement = getByRole("checkbox");
+
+    fireEvent.click(checkboxElement);
+  });
+
+  test("button should be disabled", () => {
+    expect(buttonElement).toBeDisabled();
+  });
+
+  test("button shouldn't call onClick function", () => {});
+});
+
+describe("checkbox isn't checked", () => {
+  let buttonElement: HTMLElement;
+  /* let checkboxElement: HTMLElement; */
+
+  beforeEach(() => {
+    const { getByRole } = setup();
+    buttonElement = getByRole("button", { name: /change to/i });
+    /* checkboxElement = getByRole("checkbox"); */
+  });
+
+  test("button should be enable", () => {
+    expect(buttonElement).toBeEnabled();
   });
 });

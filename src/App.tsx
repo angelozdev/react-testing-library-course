@@ -1,11 +1,11 @@
-import * as React from "react";
 import "./App.css";
-import { Button } from "./components";
+import { Button, Checkbox } from "./components";
 
 function App() {
   return (
     <div>
       <Button />
+      <Checkbox />
     </div>
   );
 }

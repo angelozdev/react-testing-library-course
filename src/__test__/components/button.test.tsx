@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import App from "../../App";
 
@@ -7,6 +6,7 @@ describe("initial button properties", () => {
 
   beforeEach(() => {
     const { getByRole } = render(<App />);
+
     buttonElement = getByRole("button", {
       name: /change to/i,
     });
@@ -21,10 +21,33 @@ describe("initial button properties", () => {
   });
 });
 
+describe("initial conditions", () => {
+  let buttonElement: HTMLElement;
+  let checkboxElement: HTMLElement;
+
+  beforeEach(() => {
+    const { getByRole } = render(<App />);
+
+    buttonElement = getByRole("button", {
+      name: /change to/i,
+    });
+    checkboxElement = getByRole("checkbox");
+  });
+
+  test("button starts enabled", () => {
+    expect(buttonElement).toBeEnabled();
+  });
+
+  test("checkbox starts unchecked", () => {
+    expect(checkboxElement).not.toBeChecked();
+  });
+});
+
 describe("click on button", () => {
   let buttonElement: HTMLElement;
   beforeEach(() => {
     const { getByRole } = render(<App />);
+
     buttonElement = getByRole("button", {
       name: /change to/i,
     });

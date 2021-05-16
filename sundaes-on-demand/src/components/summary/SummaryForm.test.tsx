@@ -1,4 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+/* Components */
 import { SummaryForm } from "./";
 
 describe("initial states", () => {
@@ -30,7 +33,7 @@ describe("click on checkbox input", () => {
       name: /i agree to/i,
     });
 
-    fireEvent.click(checkboxElement);
+    userEvent.click(checkboxElement);
   });
 
   test("enables button", () => {

@@ -1,0 +1,3 @@
+{
+  "src/**/*.{jsx,json,ts,tsx}": ["eslint cache --fix", "yarn test"]
+}

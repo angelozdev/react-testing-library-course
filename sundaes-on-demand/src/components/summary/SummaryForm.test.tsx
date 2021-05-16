@@ -1,20 +1,51 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { SummaryForm } from "./";
 
-test("conditions checkbox is unchecked by default", () => {
-  render(<SummaryForm />);
-  const checkboxElement = screen.getByRole("checkbox", { name: /i agree to/i });
+describe("initial states", () => {
+  beforeEach(() => {
+    render(<SummaryForm />);
+  });
 
-  expect(checkboxElement).not.toBeChecked();
+  test("checkbox is unchecked by default", () => {
+    const checkboxElement = screen.getByRole("checkbox", {
+      name: /i agree to/i,
+    });
+
+    expect(checkboxElement).not.toBeChecked();
+  });
+
+  test("button is disabled by default", () => {
+    const buttonElement = screen.getByRole("button", {
+      name: /confirm order/i,
+    });
+
+    expect(buttonElement).toBeDisabled();
+  });
 });
 
-test("conditions checkbox enables button", () => {
-  render(<SummaryForm />);
-  const checkboxElement = screen.getByRole("checkbox", { name: /i agree to/i });
-  const buttonElement = screen.getByRole("button", { name: /confirm order/i });
+describe("click on checkbox input", () => {
+  beforeEach(() => {
+    render(<SummaryForm />);
+    const checkboxElement = screen.getByRole("checkbox", {
+      name: /i agree to/i,
+    });
 
-  expect(buttonElement).toBeDisabled();
+    fireEvent.click(checkboxElement);
+  });
 
-  fireEvent.click(checkboxElement);
-  expect(buttonElement).toBeEnabled();
+  test("enables button", () => {
+    const buttonElement = screen.getByRole("button", {
+      name: /confirm order/i,
+    });
+
+    expect(buttonElement).toBeEnabled();
+  });
+
+  test("checkbox is checked", () => {
+    const checkboxElement = screen.getByRole("checkbox", {
+      name: /i agree to/i,
+    });
+
+    expect(checkboxElement).toBeChecked();
+  });
 });

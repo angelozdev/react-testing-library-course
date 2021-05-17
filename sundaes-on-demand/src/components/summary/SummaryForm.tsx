@@ -2,28 +2,35 @@ import * as React from "react";
 
 function SummaryForm() {
   const [checked, setChecked] = React.useState<boolean>(false);
+  const [showPopover, setShowPopover] = React.useState<boolean>(false);
 
   return (
     <form>
-      <label className="block cursor-pointer">
+      <label className="relative block cursor-pointer">
         <input
           onChange={(e) => setChecked(e.target.checked)}
           checked={checked}
           type="checkbox"
         />
         I agree to{" "}
-        <a
+        <span
+          onMouseEnter={() => setShowPopover(true)}
+          onMouseLeave={() => setShowPopover(false)}
           className="underline hover:text-blue-900"
-          target="_blank"
-          rel="noreferrer"
-          href="file:///home/angelozdev/Downloads/04%20Checkbox%20Enables%20Button%20Code%20Quiz%20Spec.pdf"
         >
           terms and conditions
-        </a>
+        </span>
+        <div
+          hidden={!showPopover}
+          role="tooltip"
+          className="border p-2 bg-indigo-100 absolute top-6 z-10"
+        >
+          <p>No ice cream will actually be delivered</p>
+        </div>
       </label>
 
       <button
-        className="disabled:opacity-50 p-2 bg-green-500 text-white"
+        className="disabled:opacity-50 disabled:cursor-not-allowed p-2 bg-green-500 text-white"
         disabled={!checked}
         type="submit"
       >

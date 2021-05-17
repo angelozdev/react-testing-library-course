@@ -24,6 +24,12 @@ describe("initial states", () => {
 
     expect(buttonElement).toBeDisabled();
   });
+
+  test("doesn't show popover", () => {
+    const popoverElement = screen.queryByRole("tooltip");
+
+    expect(popoverElement).not.toBeInTheDocument();
+  });
 });
 
 describe("click on checkbox input", () => {
@@ -36,6 +42,14 @@ describe("click on checkbox input", () => {
     userEvent.click(checkboxElement);
   });
 
+  test("checkbox is checked", () => {
+    const checkboxElement = screen.getByRole("checkbox", {
+      name: /i agree to/i,
+    });
+
+    expect(checkboxElement).toBeChecked();
+  });
+
   test("enables button", () => {
     const buttonElement = screen.getByRole("button", {
       name: /confirm order/i,
@@ -43,12 +57,27 @@ describe("click on checkbox input", () => {
 
     expect(buttonElement).toBeEnabled();
   });
+});
 
-  test("checkbox is checked", () => {
-    const checkboxElement = screen.getByRole("checkbox", {
-      name: /i agree to/i,
-    });
+describe("hover on terms and conditions", () => {
+  beforeEach(() => {
+    render(<SummaryForm />);
+    const termsAndConditionsElement = screen.getByText(/terms and conditions/i);
+    userEvent.hover(termsAndConditionsElement);
+  });
 
-    expect(checkboxElement).toBeChecked();
+  test("show popover", () => {
+    const popoverElement = screen.getByRole("tooltip");
+
+    expect(popoverElement).toBeInTheDocument();
+  });
+
+  test("unhover hidden popover", async () => {
+    const termsAndConditionsElement = screen.getByText(/terms and conditions/i);
+    userEvent.unhover(termsAndConditionsElement);
+
+    const popoverElement = screen.queryByRole("tooltip");
+
+    expect(popoverElement).not.toBeInTheDocument();
   });
 });

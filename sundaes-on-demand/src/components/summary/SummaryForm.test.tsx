@@ -72,7 +72,7 @@ describe("hover on terms and conditions", () => {
     expect(popoverElement).toBeInTheDocument();
   });
 
-  test("unhover hidden popover", async () => {
+  test("unhover hidden popover", () => {
     const termsAndConditionsElement = screen.getByText(/terms and conditions/i);
     userEvent.unhover(termsAndConditionsElement);
 

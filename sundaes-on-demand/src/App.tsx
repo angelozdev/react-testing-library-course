@@ -1,10 +1,10 @@
-import { SummaryForm } from "./components/summary";
+import { /* Summary, */ Entry } from "./pages";
 
 function App() {
   return (
-    <div className="App">
-      <SummaryForm />
-    </div>
+    <main className="App">
+      <Entry />
+    </main>
   );
 }
 

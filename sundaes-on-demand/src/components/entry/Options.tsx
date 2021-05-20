@@ -1,9 +1,12 @@
 import * as React from "react";
-import axios from "axios";
 
 /* Components */
 import { Option } from ".";
+import { AlertBanner } from "../common";
 import { Item, OptionTypes } from "../../types";
+
+/* Hooks */
+import { useGetItems } from "../../hooks";
 
 /* Local Types */
 interface Props {
@@ -11,29 +14,37 @@ interface Props {
 }
 
 function Options({ type }: Props) {
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() => {
-    axios
-      .get(`http://localhost:3030/${type}`)
-      .then(({ data }) => setData(data))
-      .catch(console.error);
-  }, [type]);
+  const { status, data, error } = useGetItems(type);
 
   return (
     <div className="mb-6">
-      <h2 className="text-xl font-semibold capitalize">{type}</h2>
-      <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4 items-center">
-        {Boolean(data.length) &&
-          data.map((item: Item) => (
-            <Option
-              key={item.name}
-              name={item.name}
-              imagePath={item.imagePath}
-              type={type}
-            />
-          ))}
-      </ul>
+      {status === "FAILURE" && (
+        <AlertBanner message={error?.message} variant="red" />
+      )}
+
+      {status === "LOADING" && <p role="status">Loading...</p>}
+
+      {status === "SUCCESS" && (
+        <React.Fragment>
+          <h2 className="text-xl font-semibold capitalize">{type}</h2>
+
+          <p className="capitalize">
+            {type} total: $<span>0</span>
+          </p>
+
+          <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4 items-center">
+            {Boolean(data.length) &&
+              data.map((item: Item) => (
+                <Option
+                  key={item.name}
+                  name={item.name}
+                  imagePath={item.imagePath}
+                  type={type}
+                />
+              ))}
+          </ul>
+        </React.Fragment>
+      )}
     </div>
   );
 }

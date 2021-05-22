@@ -2,45 +2,55 @@
   "iceCreamFlavors": [
     {
       "name": "Mint chip",
-      "imagePath": "/images/mint-chip.png" 
+      "imagePath": "/images/mint-chip.png",
+      "price": 3000
     },
     {
       "name": "Vanilla",
-      "imagePath": "/images/vanilla.png" 
+      "imagePath": "/images/vanilla.png",
+      "price": 3000
     },
     {
       "name": "Chocolate",
-      "imagePath": "/images/chocolate.png" 
+      "imagePath": "/images/chocolate.png",
+      "price": 3000
     },
     {
       "name": "Salted caramel",
-      "imagePath": "/images/salted-caramel.png" 
+      "imagePath": "/images/salted-caramel.png",
+      "price": 3000
     }
-  ], 
+  ],
   "toppings": [
     {
       "name": "M&Ms",
-      "imagePath": "/images/m-and-ms.png"
+      "imagePath": "/images/m-and-ms.png",
+      "price": 2500
     },
     {
       "name": "Hot fudge",
-      "imagePath": "/images/hot-fudge.png"
+      "imagePath": "/images/hot-fudge.png",
+      "price": 2500
     },
     {
       "name": "Peanut butter cups",
-      "imagePath": "/images/peanut-butter-cups.png"
+      "imagePath": "/images/peanut-butter-cups.png",
+      "price": 2500
     },
     {
       "name": "Gummi bears",
-      "imagePath": "/images/gummi-bears.png"
+      "imagePath": "/images/gummi-bears.png",
+      "price": 2500
     },
     {
       "name": "Mochi",
-      "imagePath": "/images/mochi.png"
+      "imagePath": "/images/mochi.png",
+      "price": 2500
     },
     {
       "name": "Cherries",
-      "imagePath": "/images/cherries.png"
+      "imagePath": "/images/cherries.png",
+      "price": 2500
     }
   ]
 }

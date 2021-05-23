@@ -51,7 +51,6 @@ function ToppingOption({ name, imagePath, price }: Item) {
           Add
           <input
             className="border w-full py-1 px-3"
-            role="spinbutton"
             type="checkbox"
             name={name}
             checked={checked}

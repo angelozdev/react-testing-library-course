@@ -1,35 +1,35 @@
 import * as React from "react";
 import { Order } from "../../contexts";
 import { useStateWithCallback } from "../../hooks";
-import { Item, Scoop } from "../../types";
+import { Item, Topping } from "../../types";
 import { formatCurrency } from "../../utils";
 
-function ScoopOption({ name, imagePath, price }: Item) {
-  const { addScoopOption, removeScoopOption } = React.useContext(Order.Context);
+function ToppingOption({ name, imagePath, price }: Item) {
+  const { addToppingOption, removeToppingOption } = React.useContext(
+    Order.Context
+  );
 
-  const callback = (quantity: number) => {
-    const item: Scoop = {
+  const callback = (checked: boolean) => {
+    const item: Topping = {
       price,
       imagePath,
       name,
-      quantity,
+      checked,
     };
 
-    if (quantity > 0) {
-      addScoopOption(item);
-    }
-
-    if (quantity <= 0) {
-      removeScoopOption(item);
+    if (checked) {
+      addToppingOption(item);
+    } else {
+      removeToppingOption(item);
     }
   };
 
-  const [quantity, setQuantity] = useStateWithCallback<number>(0, callback);
+  const [checked, setChecked] = useStateWithCallback<boolean>(false, callback);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+    const newValue = event.target.checked;
 
-    setQuantity(Number(newValue));
+    setChecked(newValue);
   };
 
   return (
@@ -48,15 +48,13 @@ function ScoopOption({ name, imagePath, price }: Item) {
         </p>
 
         <label className="mt-2 block">
-          Quantity:
+          Add
           <input
             className="border w-full py-1 px-3"
-            min="0"
-            max="100"
             role="spinbutton"
-            type="number"
+            type="checkbox"
             name={name}
-            value={quantity}
+            checked={checked}
             onChange={handleChange}
           />
         </label>
@@ -65,4 +63,4 @@ function ScoopOption({ name, imagePath, price }: Item) {
   );
 }
 
-export default ScoopOption;
+export default ToppingOption;

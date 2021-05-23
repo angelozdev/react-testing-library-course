@@ -1,5 +1,5 @@
 /* Components */
-import { OptionLayout, ScoopList } from "../components/entry";
+import { OptionLayout, ScoopList, ToppingList } from "../components/entry";
 
 function Entry() {
   return (
@@ -12,7 +12,9 @@ function Entry() {
             <ScoopList />
           </OptionLayout>
 
-          {/* <Options type="toppings" /> */}
+          <OptionLayout title="Toppings List" type="toppings">
+            <ToppingList />
+          </OptionLayout>
         </div>
       </div>
     </section>

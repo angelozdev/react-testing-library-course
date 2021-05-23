@@ -1,10 +1,17 @@
+import * as React from "react";
+
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Options from "./Options";
+import { Options } from "../";
+import { Order } from "../../../contexts";
 
 describe("change quantity", () => {
   beforeEach(() => {
-    render(<Options type="scoops" />);
+    const wrapper: React.ComponentType = ({ children }) => {
+      return <Order.Provider>{children}</Order.Provider>;
+    };
+
+    render(<Options type="scoops" />, { wrapper });
   });
 
   test("update input value", async () => {
@@ -29,9 +36,15 @@ describe("change quantity", () => {
     const priceElement = screen.getByText(/scoops total/i);
 
     const firstInput = inputsElement[0];
+    const secondInput = inputsElement[1];
 
-    userEvent.type(firstInput, "4");
+    userEvent.clear(firstInput);
+    userEvent.type(firstInput, "5");
+    expect(priceElement).toHaveTextContent("$ 17.500");
 
-    expect(priceElement).toHaveTextContent((4 * 3000).toString());
+    userEvent.clear(secondInput);
+    userEvent.type(secondInput, "2");
+
+    expect(priceElement).toHaveTextContent("$ 24.500");
   });
 });

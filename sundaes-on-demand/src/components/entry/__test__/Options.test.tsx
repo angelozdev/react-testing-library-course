@@ -6,10 +6,10 @@ import {
 } from "@testing-library/react";
 import { rest } from "msw";
 // eslint-disable-next-line jest/no-mocks-import
-import { server } from "../../__mocks__";
+import { server } from "../../../__mocks__";
 
 /* Components */
-import { Options } from "./";
+import { Options } from "../";
 
 describe("initial state", () => {
   test("should start loading", async () => {

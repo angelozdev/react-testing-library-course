@@ -8,5 +8,10 @@ export interface Options {
 export type Context = {
   options: Options;
   addAnOption: (item: Item, type: OptionTypes) => void;
-  totalPrice: number;
+  removeAnOption: (item: Item, type: OptionTypes) => void;
+  totals: {
+    scoops: number;
+    toppings: number;
+    grandTotal: number;
+  };
 };

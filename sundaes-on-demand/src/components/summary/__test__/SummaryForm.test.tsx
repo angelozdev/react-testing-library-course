@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 /* Components */
-import { SummaryForm } from "./";
+import { SummaryForm } from "../";
 
 describe("initial states", () => {
   beforeEach(() => {

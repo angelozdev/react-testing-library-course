@@ -8,6 +8,7 @@ import { Item, OptionTypes } from "../../types";
 /* Hooks */
 import { useGetItems } from "../../hooks";
 import { Order } from "../../contexts";
+import { formatCurrency } from "../../utils";
 
 /* Local Types */
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
 
 function Options({ type }: Props) {
   const { status, data, error } = useGetItems(type);
-  const { totalPrice } = React.useContext(Order.Context);
+  const { totals } = React.useContext(Order.Context);
 
   return (
     <div className="mb-6">
@@ -31,7 +32,7 @@ function Options({ type }: Props) {
           <h2 className="text-xl font-semibold capitalize">{type}</h2>
 
           <p className="capitalize">
-            {type} total: $<span>{totalPrice}</span>
+            {type} total: <strong>{formatCurrency(totals[type])}</strong>
           </p>
 
           <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4 items-center">

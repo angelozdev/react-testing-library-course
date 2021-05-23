@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 
 /* Components */
-import { Option } from "./";
+import { Option } from "../";
 
 /* Fake data */
 // eslint-disable-next-line jest/no-mocks-import
-import { scoopsMock } from "../../__mocks__";
+import { scoopsMock } from "../../../__mocks__";
 
 const fakeOption = scoopsMock[0];
 

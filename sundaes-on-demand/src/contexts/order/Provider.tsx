@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Context } from ".";
-import { Item, OptionTypes } from "../../types";
+import { Item } from "../../types";
 import { Options, Context as ContextTypes } from "./types";
 
 interface Props {
@@ -31,23 +31,11 @@ function Provider({ children }: Props) {
     [options]
   );
 
-  const addAnOption = React.useCallback(
-    (item: Item, type: OptionTypes): void => {
+  const removeScoopOption = React.useCallback(
+    (item: Item) => {
       const newOptions = {
         ...options,
-        [type]: [...options[type].filter((i) => i.name !== item.name), item],
-      };
-
-      setOptions(newOptions);
-    },
-    [options]
-  );
-
-  const removeAnOption = React.useCallback(
-    (item: Item, type: OptionTypes) => {
-      const newOptions = {
-        ...options,
-        [type]: [...options[type].filter((i) => i.name !== item.name)],
+        scoops: [...options.scoops.filter((i) => i.name !== item.name)],
       };
 
       setOptions(newOptions);
@@ -57,7 +45,7 @@ function Provider({ children }: Props) {
 
   const updateTotal = React.useCallback(() => {
     const sumReduce = (cur: number, acc: Item) => {
-      if (!acc.quantity) return cur;
+      if (typeof acc.quantity !== "number") return cur;
       return cur + acc.price * acc.quantity;
     };
 
@@ -75,15 +63,16 @@ function Provider({ children }: Props) {
     updateTotal();
   }, [options, updateTotal]);
 
+  console.log(options);
+
   const value: ContextTypes = React.useMemo(() => {
     return {
       options,
-      addAnOption,
       totals,
-      removeAnOption,
+      removeScoopOption,
       addScoopOption,
     };
-  }, [options, addAnOption, totals, removeAnOption, addScoopOption]);
+  }, [options, totals, removeScoopOption, addScoopOption]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

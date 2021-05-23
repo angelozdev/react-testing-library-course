@@ -1,5 +1,5 @@
 import { render, screen } from "../../../utils/test-utils";
-import { ScoopOtion } from "../";
+import { ScoopOtion } from "..";
 import { Item } from "../../../types";
 import userEvent from "@testing-library/user-event";
 

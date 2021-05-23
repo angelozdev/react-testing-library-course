@@ -1,4 +1,4 @@
-import { Item, OptionTypes } from "../../types";
+import { Item } from "../../types";
 
 export interface Options {
   scoops: Array<Item>;
@@ -7,8 +7,7 @@ export interface Options {
 
 export type Context = {
   options: Options;
-  addAnOption: (item: Item, type: OptionTypes) => void;
-  removeAnOption: (item: Item, type: OptionTypes) => void;
+  removeScoopOption: (scoop: Item) => void;
   addScoopOption: (scoop: Item) => void;
   totals: {
     scoops: number;

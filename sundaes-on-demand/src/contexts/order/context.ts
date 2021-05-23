@@ -2,8 +2,7 @@ import * as React from "react";
 import { Context } from "./types";
 
 const orderContext = React.createContext<Context>({
-  addAnOption: () => {},
-  removeAnOption: () => {},
+  removeScoopOption: () => {},
   addScoopOption: () => {},
   options: {
     scoops: [],

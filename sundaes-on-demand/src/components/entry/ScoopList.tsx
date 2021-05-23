@@ -12,7 +12,7 @@ function ScoopList() {
   const { status, data: scoops, error } = useGetItems("scoops");
 
   if (status === "LOADING") {
-    return <p>Loading...</p>;
+    return <p role="status">Loading...</p>;
   }
 
   if (status === "FAILURE") {

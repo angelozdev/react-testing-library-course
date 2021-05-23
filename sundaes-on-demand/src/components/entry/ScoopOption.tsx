@@ -5,7 +5,7 @@ import { Item } from "../../types";
 import { formatCurrency } from "../../utils";
 
 function ScoopOption({ name, imagePath, price }: Omit<Item, "quantity">) {
-  const { addScoopOption } = React.useContext(Order.Context);
+  const { addScoopOption, removeScoopOption } = React.useContext(Order.Context);
 
   const callback = (quantity: number) => {
     const item: Item = {
@@ -20,7 +20,7 @@ function ScoopOption({ name, imagePath, price }: Omit<Item, "quantity">) {
     }
 
     if (quantity <= 0) {
-      // TODO: Add way to remove scoop
+      removeScoopOption(item);
     }
   };
 
@@ -47,16 +47,19 @@ function ScoopOption({ name, imagePath, price }: Omit<Item, "quantity">) {
           Price: <strong>{formatCurrency(price)}</strong>
         </p>
 
-        <input
-          className="border w-full py-1 px-3"
-          min="0"
-          max="100"
-          role="spinbutton"
-          type="number"
-          name={name}
-          value={quantity}
-          onChange={handleChange}
-        />
+        <label className="mt-2 block">
+          Quantity:
+          <input
+            className="border w-full py-1 px-3"
+            min="0"
+            max="100"
+            role="spinbutton"
+            type="number"
+            name={name}
+            value={quantity}
+            onChange={handleChange}
+          />
+        </label>
       </div>
     </li>
   );

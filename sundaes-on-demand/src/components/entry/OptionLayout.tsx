@@ -19,7 +19,7 @@ function Options({ title, type, children }: Props) {
     <div className="mb-6">
       <h2 className="text-xl font-semibold capitalize">{title}</h2>
 
-      <p className="capitalize">
+      <p className="capitalize" data-testid="price-display">
         {type} total: <strong>{formatCurrency(totals[type])}</strong>
       </p>
 

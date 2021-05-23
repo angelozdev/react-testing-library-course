@@ -11,7 +11,7 @@ import { server } from "../../../__mocks__";
 /* Components */
 import { Options } from "../";
 
-describe("initial state", () => {
+describe.skip("initial state", () => {
   test("should start loading", async () => {
     render(<Options type="scoops" />);
 
@@ -25,7 +25,7 @@ describe("initial state", () => {
   });
 });
 
-describe("display images from server", () => {
+describe.skip("display images from server", () => {
   test("each scoop", async () => {
     render(<Options type="scoops" />);
 
@@ -63,7 +63,7 @@ describe("display images from server", () => {
   });
 });
 
-describe("handle errors", () => {
+describe.skip("handle errors", () => {
   test("handle errors for sccops", async () => {
     render(<Options type="scoops" />);
 

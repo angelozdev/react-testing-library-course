@@ -19,6 +19,18 @@ function Provider({ children }: Props) {
     grandTotal: 0,
   });
 
+  const addScoopOption = React.useCallback(
+    (item: Item): void => {
+      const newOptions = {
+        ...options,
+        scoops: [...options.scoops.filter((i) => i.name !== item.name), item],
+      };
+
+      setOptions(newOptions);
+    },
+    [options]
+  );
+
   const addAnOption = React.useCallback(
     (item: Item, type: OptionTypes): void => {
       const newOptions = {
@@ -69,8 +81,9 @@ function Provider({ children }: Props) {
       addAnOption,
       totals,
       removeAnOption,
+      addScoopOption,
     };
-  }, [options, addAnOption, totals, removeAnOption]);
+  }, [options, addAnOption, totals, removeAnOption, addScoopOption]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }

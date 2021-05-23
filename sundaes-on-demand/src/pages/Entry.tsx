@@ -1,5 +1,5 @@
-import React from "react";
-import { Options } from "../components/entry";
+/* Components */
+import { Options, ScoopList } from "../components/entry";
 
 function Entry() {
   return (
@@ -8,9 +8,11 @@ function Entry() {
         <div className="">
           <h1 className="text-4xl font-semibold">Design your sundae!</h1>
 
-          <Options type="scoops" />
+          <Options title="Scoops List" type="scoops">
+            <ScoopList />
+          </Options>
 
-          <Options type="toppings" />
+          {/* <Options type="toppings" /> */}
         </div>
       </div>
     </section>

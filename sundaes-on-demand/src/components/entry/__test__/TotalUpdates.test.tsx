@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { Options } from "../";
 import { Order } from "../../../contexts";
 
-describe("change quantity", () => {
+describe.skip("change quantity", () => {
   beforeEach(() => {
     const wrapper: React.ComponentType = ({ children }) => {
       return <Order.Provider>{children}</Order.Provider>;

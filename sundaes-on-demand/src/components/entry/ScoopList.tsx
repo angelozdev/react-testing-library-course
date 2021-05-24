@@ -20,7 +20,7 @@ function ScoopList() {
   }
 
   return (
-    <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4 items-center">
+    <ul className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4 mt-4 items-center">
       {scoops.map((item: Item) => (
         <ScoopOtion
           key={item.name}

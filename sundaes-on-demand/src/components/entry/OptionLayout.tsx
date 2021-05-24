@@ -16,11 +16,14 @@ function Options({ title, type, children }: Props) {
   const { totals } = React.useContext(Order.Context);
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 border p-4 mt-4">
       <h2 className="text-xl font-semibold capitalize">{title}</h2>
 
       <p className="capitalize" data-testid="price-display">
-        {type} total: <strong>{formatCurrency(totals[type])}</strong>
+        <span>{type}</span> total:{" "}
+        <strong className="text-blue-800">
+          {formatCurrency(totals[type])}
+        </strong>
       </p>
 
       <div>{children}</div>

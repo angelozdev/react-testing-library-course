@@ -19,6 +19,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "testing-library", "jest-dom"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-console": "error"
   }
 }

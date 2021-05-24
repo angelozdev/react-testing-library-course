@@ -24,6 +24,7 @@ test("should start loading", async () => {
 
 test("show alert on server error", async () => {
   render(<ScoopList />);
+
   server.resetHandlers(
     rest.get("http://localhost:3030/scoops", (_, res, ctx) => {
       return res(ctx.status(500));

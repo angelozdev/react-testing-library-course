@@ -6,7 +6,7 @@ import { Order } from "../../contexts";
 import { formatCurrency } from "../../utils";
 
 /* Local Types */
-interface Props {
+export interface Props {
   title: string;
   type: OptionTypes;
   children: React.ReactNode;

@@ -1,13 +1,23 @@
 import { render, screen } from "../../../utils/test-utils";
 import userEvent from "@testing-library/user-event";
-import { OptionLayout, ScoopList, ToppingList } from "../";
+import { OptionLayout, ScoopList, ToppingList, OptionLayoutProps } from "../";
 
-test("when scoops quantities changes then change the display of price", async () => {
-  render(
-    <OptionLayout title="Test title" type="scoops">
-      <ScoopList />
+const TestComponent = (props: Partial<OptionLayoutProps>) => {
+  const {
+    children = <ScoopList />,
+    title = "Title test",
+    type = "scoops",
+  } = props;
+
+  return (
+    <OptionLayout title={title} type={type}>
+      {children}
     </OptionLayout>
   );
+};
+
+test("when scoops quantities changes then change the display of price", async () => {
+  render(<TestComponent />);
 
   const inputsElement = await screen.findAllByRole("spinbutton");
   const priceDisplayElement = screen.getByTestId("price-display");
@@ -29,11 +39,7 @@ test("when scoops quantities changes then change the display of price", async ()
 });
 
 test("when topping checked then change the display of price", async () => {
-  render(
-    <OptionLayout title="Test title" type="toppings">
-      <ToppingList />
-    </OptionLayout>
-  );
+  render(<TestComponent type="toppings" children={<ToppingList />} />);
 
   const checkboxElement = await screen.findAllByRole("checkbox");
   const priceDisplayElement = screen.getByTestId("price-display");

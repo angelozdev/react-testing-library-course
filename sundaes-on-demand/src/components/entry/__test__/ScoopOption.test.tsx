@@ -3,14 +3,14 @@ import { ScoopOtion } from "..";
 import { Item } from "../../../types";
 import userEvent from "@testing-library/user-event";
 
-const fakeScoop: Item = {
-  imagePath: "image.png",
-  name: "Chocolate",
-  price: 4000,
+const TestComponent = (props: Partial<Item>) => {
+  const { imagePath = "image.png", name = "Chocolate", price = 4000 } = props;
+
+  return <ScoopOtion imagePath={imagePath} name={name} price={price} />;
 };
 
 test("initial value input should start out 0", () => {
-  render(<ScoopOtion {...fakeScoop} />);
+  render(<TestComponent />);
 
   const inputElement = screen.getByRole("spinbutton");
 
@@ -18,7 +18,7 @@ test("initial value input should start out 0", () => {
 });
 
 test("display an image", () => {
-  render(<ScoopOtion {...fakeScoop} />);
+  render(<TestComponent />);
 
   const imageElement = screen.getByRole("img");
 
@@ -26,7 +26,7 @@ test("display an image", () => {
 });
 
 test("change quantity on type number", () => {
-  render(<ScoopOtion {...fakeScoop} />);
+  render(<TestComponent />);
 
   const inputElement = screen.getByRole("spinbutton");
 

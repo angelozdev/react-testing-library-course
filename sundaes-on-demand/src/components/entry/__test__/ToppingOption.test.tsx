@@ -4,21 +4,21 @@ import { render, screen } from "../../../utils/test-utils";
 import { ToppingOption } from "../";
 import { Item } from "../../../types";
 
-const fakeTopping: Item = {
-  imagePath: "image.png",
-  name: "Candies",
-  price: 1000,
+const TestComponent = (props: Partial<Item>) => {
+  const { imagePath = "candies.png", name = "Candies", price = 1000 } = props;
+
+  return <ToppingOption imagePath={imagePath} name={name} price={price} />;
 };
 
 test("should start unchecked", () => {
-  render(<ToppingOption {...fakeTopping} />);
+  render(<TestComponent />);
 
   const checkboxElemenet = screen.getByRole("checkbox");
   expect(checkboxElemenet).not.toBeChecked();
 });
 
 test("should display its price", () => {
-  render(<ToppingOption {...fakeTopping} />);
+  render(<TestComponent />);
 
   const displayPrice = screen.getByText(/price:/i).querySelector("strong");
 

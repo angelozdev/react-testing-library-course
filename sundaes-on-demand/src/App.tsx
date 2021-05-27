@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Summary, Entry } from "./pages";
+import { Summary, Entry, Thanks } from "./pages";
 
 function App() {
   return (
@@ -8,9 +8,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Entry} />
           <Route exact path="/summary" component={Summary} />
-          <Route exact path="/thanks">
-            <h1>Thanks :D</h1>
-          </Route>
+          <Route exact path="/thanks" component={Thanks} />
         </Switch>
       </main>
     </Router>

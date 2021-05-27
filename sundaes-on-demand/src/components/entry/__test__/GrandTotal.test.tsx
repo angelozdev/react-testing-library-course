@@ -21,6 +21,20 @@ test("should starts at $ 0", () => {
   expect(displayPrice).toHaveTextContent("$ 0");
 });
 
+test("button should be disabled when total is $ 0", () => {
+  render(<TestComponent />);
+  const button = screen.getByRole("button");
+  const scoopInput = screen.getByRole("spinbutton");
+
+  expect(button).toBeDisabled();
+
+  userEvent.type(scoopInput, "1");
+  expect(button).toBeEnabled();
+
+  userEvent.clear(scoopInput);
+  expect(button).toBeDisabled();
+});
+
 describe("update grand total", () => {
   beforeEach(() => {
     render(<TestComponent />);

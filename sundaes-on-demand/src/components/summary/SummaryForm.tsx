@@ -1,8 +1,10 @@
-import * as React from "react";
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 function SummaryForm() {
   const [checked, setChecked] = React.useState<boolean>(false);
   const [showPopover, setShowPopover] = React.useState<boolean>(false);
+  const history = useHistory();
 
   return (
     <form>
@@ -30,9 +32,10 @@ function SummaryForm() {
       </label>
 
       <button
+        onClick={() => history.push("/thanks")}
         className="disabled:opacity-50 disabled:cursor-not-allowed p-2 bg-green-500 text-white"
         disabled={!checked}
-        type="submit"
+        type="button"
       >
         <span className="px-2">Confirm order</span>
       </button>

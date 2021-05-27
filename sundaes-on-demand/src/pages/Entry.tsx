@@ -9,7 +9,7 @@ import {
 
 function Entry() {
   return (
-    <section>
+    <section data-testid="entry-page">
       <div className="container mx-auto px-4">
         <div className="py-4">
           <h1 className="text-4xl font-semibold">Design your sundae!</h1>

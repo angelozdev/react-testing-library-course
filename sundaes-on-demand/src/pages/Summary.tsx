@@ -2,9 +2,9 @@ import { SummaryForm } from "../components/summary";
 
 function Summary() {
   return (
-    <div>
+    <section data-testid="summary-page">
       <SummaryForm />
-    </div>
+    </section>
   );
 }
 
